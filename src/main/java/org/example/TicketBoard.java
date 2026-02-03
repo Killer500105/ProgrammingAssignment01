@@ -30,6 +30,7 @@ public class TicketBoard {
             System.out.println(tickets[i]);
         }
     }
+
     public void sortByUrgencyDesc() {
         if (size <= 1) return;
         Ticket[] temp = new Ticket[size];
@@ -79,19 +80,30 @@ public class TicketBoard {
 
     // ---------------------------------------------------------
     // TODO #4 (Algorithm Completion): Binary Search by ID
-    // Precondition: tickets are sorted by ID ASCENDING.
-    // Return the Ticket with matching id, or null if not found.
-    // Implement iterative binary search on the array.
     // ---------------------------------------------------------
     public Ticket findByIdBinarySearch(int id) {
         // TODO #5
+        int left = 0;
+        int right = size - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            int midId = tickets[mid].getId();
+
+            if (midId == id) {
+                return tickets[mid];
+            } else if (midId < id) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
         return null;
     }
 
     // Utility: sort by ID ascending (already implemented)
-    // (Used only to prepare for binary search)
     public void sortByIdAsc() {
-        // Simple insertion sort to keep the assignment focused
         for (int i = 1; i < size; i++) {
             Ticket key = tickets[i];
             int j = i - 1;
