@@ -13,9 +13,17 @@ public class SoftwareTicket extends Ticket {
         this.affectsLogin = affectsLogin;
     }
 
-    public String getSystem() { return system; }
-    public boolean isSecurityIssue() { return securityIssue; }
-    public boolean isAffectsLogin() { return affectsLogin; }
+    public String getSystem() {
+        return system;
+    }
+
+    public boolean isSecurityIssue() {
+        return securityIssue;
+    }
+
+    public boolean isAffectsLogin() {
+        return affectsLogin;
+    }
 
     // -----------------------------------------
     // TODO #3 (Inheritance)
@@ -29,7 +37,7 @@ public class SoftwareTicket extends Ticket {
     // -----------------------------------------
     @Override
     public int urgencyScore() {
-        int score = priority * 10 + daysOpen;
+        int score = getPriority() * 10 + getDaysOpen();
 
         if (securityIssue) {
             score += 25;
@@ -45,3 +53,4 @@ public class SoftwareTicket extends Ticket {
 
         return score;
     }
+}
